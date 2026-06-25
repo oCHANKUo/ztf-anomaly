@@ -27,25 +27,13 @@ Install all dependencies with the following command, entered into your terminal 
 pip install alerce pandas numpy scipy scikit-learn torch matplotlib
 ```
 
-The purpose of each package is as follows:
-
-| Package | Purpose |
-|---------|---------|
-| `alerce` | Communicates with the ZTF data archive to retrieve light curves |
-| `pandas` | Handles tabular data (spreadsheets, catalogs) |
-| `numpy` | Performs numerical computations efficiently |
-| `scipy` | Provides statistical functions and interpolation tools |
-| `scikit-learn` | Implements the Isolation Forest and One-Class SVM algorithms |
-| `torch` | Deep learning framework used to build the Autoencoder |
-| `matplotlib` | Generates publication-quality plots and figures |
-
 ---
 
 ## Installation and Setup
 
 ### Step 1: Obtain the Code
 
-Download or copy the `ztf_anomaly/` folder to your computer. Ensure the folder structure is preserved exactly as follows:
+file strcuture:
 
 ```
 ztf_anomaly/
@@ -73,25 +61,16 @@ ztf_anomaly/
     └── classify.py
 ```
 
-The files named `__init__.py` are empty; they serve only to mark each subfolder as part of the Python package.
-
-### Step 2: Open a Terminal
-
-- **Windows**: Press `Win + R`, type `cmd`, and press Enter.
-- **macOS**: Press `Cmd + Space`, type `Terminal`, and press Enter.
-- **Linux**: Press `Ctrl + Alt + T`.
-
-### Step 3: Navigate to the Working Directory
+### Step 2: Navigate to the Working Directory
 
 Use the `cd` command to move to the folder that **contains** the `ztf_anomaly/` directory. For example:
 
 ```bash
 cd /Users/yourname/Documents/research
 ```
-
 Replace the path above with the actual location on your computer.
 
-### Step 4: Run the Complete Pipeline
+### Step 3: Run the Complete Pipeline
 
 Execute the following single command:
 
@@ -101,7 +80,7 @@ python -c "from ztf_anomaly.pipeline import Pipeline; p = Pipeline(); p.run_all(
 
 This command will perform the following actions in sequence:
 
-1. **Download** approximately 1,000 labeled supernovae from the ZTF Bright Transient Survey catalog (estimated time: 10–30 minutes, depending on network speed).
+1. **Download** approximately 1,000 labeled supernovae from the ZTF Bright Transient Survey catalog.
 2. **Inspect** the downloaded data for quality issues and remove unreliable measurements.
 3. **Extract** numerical features from each light curve, such as peak brightness, color, and duration.
 4. **Analyze** the data using all three machine learning models.
@@ -122,7 +101,7 @@ After the pipeline completes, the following files will be available in the `outp
 | `anomaly_lightcurves.png` | Light curve plots of the top candidates |
 | `anomaly_classification.txt` | Evaluation report classifying each candidate |
 
-Open `anomaly_lightcurves.png` to inspect the light curves visually. Open `consensus_anomalies.csv` in any spreadsheet program (such as Microsoft Excel or Google Sheets) to examine the numerical rankings. Open `anomaly_classification.txt` to see which candidates are considered reliable and which may be affected by data quality issues.
+Open `anomaly_lightcurves.png` to inspect the light curves visually. Open `consensus_anomalies.csv` to examine the numerical rankings. Open `anomaly_classification.txt` to see which candidates are considered reliable and which may be affected by data quality issues.
 
 ---
 
@@ -152,9 +131,6 @@ python -c "from ztf_anomaly.pipeline import Pipeline; p = Pipeline(); p.step6_vi
 # Stage 7: Evaluation
 python -c "from ztf_anomaly.pipeline import Pipeline; p = Pipeline(); p.step7_evaluate()"
 ```
-
-Each stage can be run multiple times; later stages will use the most recent outputs from earlier stages.
-
 ---
 
 ## Understanding the Output
@@ -191,29 +167,9 @@ Each panel displays one candidate anomaly:
 - **Vertical bars** — photometric uncertainty (error bars)
 - **Light red background** — indicates the object was flagged as anomalous
 
-The horizontal axis shows time in days since the first detection. The vertical axis shows apparent magnitude, with brighter values toward the top (the axis is inverted, as is standard in astronomy).
-
 ---
 
 ## Troubleshooting
-
-### Error: `ModuleNotFoundError: No module named 'alerce'`
-
-**Cause:** The required Python package is not installed.
-
-**Solution:** Run the installation command:
-```bash
-pip install alerce
-```
-
-### Error: `FileNotFoundError: bts_all_labeled.csv`
-
-**Cause:** The data download step was skipped or interrupted.
-
-**Solution:** Run the download stage explicitly:
-```bash
-python -c "from ztf_anomaly.pipeline import Pipeline; p = Pipeline(); p.step1_download(1000)"
-```
 
 ### Error: `No valid samples produced`
 
@@ -226,12 +182,6 @@ python -c "from ztf_anomaly.pipeline import Pipeline; p = Pipeline(); p.step1_do
 **Cause:** The model outputs may be missing or empty, often because an earlier stage failed.
 
 **Solution:** Verify that Stage 4 (model execution) completed without errors. Check that the files `top_anomalies_if.json`, `top_anomalies_ocsvm.json`, and `top_anomalies_ae.json` exist in the `output/` folder.
-
-### Issue: Download is very slow
-
-**Cause:** This is expected. The ZTF archive limits the rate of requests to prevent server overload. The script pauses 0.05 seconds between each object. For 1,000 objects, the total download time is typically 10 to 30 minutes.
-
-**Solution:** No action needed. Allow the process to complete. To reduce the wait, edit `config.py` and set `DOWNLOAD_LIMIT = 500` before running.
 
 ---
 
@@ -248,12 +198,6 @@ System behavior can be adjusted by editing the file `ztf_anomaly/config.py`. The
 | `STRICT_CUTS["max_frac_imputed"]` | Maximum fraction of synthetic (interpolated) data points | `0.10` |
 | `MODELS["isolation_forest"]["contamination"]` | Expected proportion of anomalies in the dataset | `0.05` |
 | `MODELS["one_class_svm"]["nu"]` | Upper bound on the fraction of training errors | `0.05` |
-
-For example, to analyze only 500 supernovae instead of 1,000, change the first line below and save the file:
-
-```python
-DOWNLOAD_LIMIT = 500
-```
 
 ---
 
