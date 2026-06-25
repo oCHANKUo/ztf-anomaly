@@ -6,6 +6,7 @@ import numpy as np
 from scipy import stats
 import os
 
+top_anomalies_count = 15
 
 def merge_results(output_dir="./output"):
     """Merge results from all three models and find consensus anomalies."""
@@ -75,7 +76,7 @@ def merge_results(output_dir="./output"):
     print("Rank | ID | Votes | Consensus | IF | AE | SVM")
     print("-" * 70)
     
-    for i, (_, row) in enumerate(merged.head(15).iterrows(), 1):
+    for i, (_, row) in enumerate(merged.head(top_anomalies_count).iterrows(), 1):
         if_score = f"{row['raw_score']:.3f}" if pd.notna(row.get('raw_score')) else "N/A"
         ae_score = f"{row['ae_score']:.3f}" if pd.notna(row.get('ae_score')) else "N/A"
         svm_score = f"{row['ocsvm_score']:.3f}" if pd.notna(row.get('ocsvm_score')) else "N/A"

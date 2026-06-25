@@ -9,6 +9,7 @@ from sklearn.preprocessing import RobustScaler
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 
+top_anomalies_count = 15
 
 def detect_ocsvm(data_dir="./data", output_dir="./output"):
     """Run One-Class SVM anomaly detection."""
@@ -54,7 +55,7 @@ def detect_ocsvm(data_dir="./data", output_dir="./output"):
     
     medians = np.median(X_scaled, axis=0)
     
-    anomalies = df.sort_values("ocsvm_score").head(15)
+    anomalies = df.sort_values("ocsvm_score").head(top_anomalies_count)
     
     print(f"--- One-Class SVM (nu={best_nu}, gamma={best_gamma}) ---")
     print(f"Dataset: {len(df)} objects")
