@@ -1,0 +1,5 @@
+Anomaly Classification Report
+======================================================================
+Real astrophysical: 5
+Borderline: 5
+Data artifacts: 0

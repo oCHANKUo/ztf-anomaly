@@ -1,0 +1,302 @@
+[
+  {
+    "ztf_id": "ZTF21abccaue",
+    "label": "SN Ib",
+    "ocsvm_score": -21.604485976401826,
+    "primary_feature": "r_asymmetry",
+    "top3_features": [
+      [
+        "r_asymmetry",
+        599.3639866278342
+      ],
+      [
+        "duration_ratio",
+        9.943842257995218
+      ],
+      [
+        "r_skew",
+        4.148198649259364
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF18aaqkdwu",
+    "label": "SN II",
+    "ocsvm_score": -21.604485976401826,
+    "primary_feature": "r_asymmetry",
+    "top3_features": [
+      [
+        "r_asymmetry",
+        3817.5924958155174
+      ],
+      [
+        "r_time_to_peak",
+        12.633873063899923
+      ],
+      [
+        "dq_max_gap",
+        2.28530821118376
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF21abiuvdk",
+    "label": "SN Ia",
+    "ocsvm_score": -21.604485976401826,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        196.72904841719577
+      ],
+      [
+        "r_rise",
+        112.49175298739226
+      ],
+      [
+        "g_fall",
+        76.91130936675121
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF20aaelulu",
+    "label": "SN Ic",
+    "ocsvm_score": -21.604485976401637,
+    "primary_feature": "r_rise",
+    "top3_features": [
+      [
+        "r_rise",
+        76.54160841777103
+      ],
+      [
+        "r_fall",
+        34.48642575032734
+      ],
+      [
+        "g_rise",
+        29.392896450384974
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF20aakzbfh",
+    "label": "SN II",
+    "ocsvm_score": -21.60448566471967,
+    "primary_feature": "r_asymmetry",
+    "top3_features": [
+      [
+        "r_asymmetry",
+        59.85990271150255
+      ],
+      [
+        "g_asymmetry",
+        40.76873907045671
+      ],
+      [
+        "r_time_to_peak",
+        18.93198160423932
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF22abpekod",
+    "label": "SN Ia",
+    "ocsvm_score": -21.60443723541654,
+    "primary_feature": "r_asymmetry",
+    "top3_features": [
+      [
+        "r_asymmetry",
+        27.952550685576266
+      ],
+      [
+        "r_time_to_peak",
+        27.252106112400213
+      ],
+      [
+        "g_asymmetry",
+        21.680386515990666
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF21aaprfqv",
+    "label": "SN Ia",
+    "ocsvm_score": -21.604402611893246,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        44.034840885378536
+      ],
+      [
+        "r_fall",
+        36.00680052070311
+      ],
+      [
+        "g_fall",
+        27.660180719296324
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF18acbwaxk",
+    "label": "SN II",
+    "ocsvm_score": -21.604332089500566,
+    "primary_feature": "dq_total_points",
+    "top3_features": [
+      [
+        "dq_total_points",
+        25.434782608695652
+      ],
+      [
+        "g_nobs",
+        24.636363636363637
+      ],
+      [
+        "r_nobs",
+        24.076923076923077
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF21abidikc",
+    "label": "SN Ia",
+    "ocsvm_score": -21.56365469677344,
+    "primary_feature": "r_asymmetry",
+    "top3_features": [
+      [
+        "r_asymmetry",
+        35.0838442362712
+      ],
+      [
+        "g_fall",
+        4.432519807909798
+      ],
+      [
+        "g_asymmetry",
+        3.054122083980153
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF18aaqkcso",
+    "label": "SN Ia",
+    "ocsvm_score": -21.539261991434817,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        36.35503289766642
+      ],
+      [
+        "r_rise",
+        25.81046311349132
+      ],
+      [
+        "r_fall",
+        16.788772232069462
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF21aamokak",
+    "label": "SN Ia",
+    "ocsvm_score": -21.139659739884213,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        28.98653636208313
+      ],
+      [
+        "r_fall",
+        19.601878332288926
+      ],
+      [
+        "r_rise",
+        12.82803054513397
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF21acceboj",
+    "label": "SN IIP",
+    "ocsvm_score": -20.92595557133759,
+    "primary_feature": "r_kurt",
+    "top3_features": [
+      [
+        "r_kurt",
+        24.726944965275027
+      ],
+      [
+        "dq_max_gap",
+        9.245557998286417
+      ],
+      [
+        "r_skew",
+        6.527305841095745
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF20adadrhw",
+    "label": "SN Ic",
+    "ocsvm_score": -20.629921391714053,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        27.51335548335294
+      ],
+      [
+        "r_rise",
+        27.213085158179773
+      ],
+      [
+        "r_fall",
+        10.2847998921386
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF20aavrzha",
+    "label": "SN Ia",
+    "ocsvm_score": -20.523099847551197,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        27.506766633948065
+      ],
+      [
+        "r_rise",
+        6.859173025462968
+      ],
+      [
+        "g_nobs",
+        6.181818181818182
+      ]
+    ]
+  },
+  {
+    "ztf_id": "ZTF22aasxgjp",
+    "label": "SN Ic-pec",
+    "ocsvm_score": -20.521114712065174,
+    "primary_feature": "g_rise",
+    "top3_features": [
+      [
+        "g_rise",
+        25.532731427890905
+      ],
+      [
+        "r_fall",
+        12.080830371407808
+      ],
+      [
+        "r_rise",
+        3.9697704211487466
+      ]
+    ]
+  }
+]

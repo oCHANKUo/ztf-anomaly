@@ -114,4 +114,4 @@ def run_download(limit=1000, output_dir="./data"):
 
 
 if __name__ == "__main__":
-    run_download()
+    run_download(5000)
