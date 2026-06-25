@@ -17,7 +17,6 @@ By combining the results from all three methods, the system produces a ranked li
 ### Software
 
 - Python 3.8 or later
-- pip (the standard Python package installer, usually included with Python)
 
 ### Required Packages
 
