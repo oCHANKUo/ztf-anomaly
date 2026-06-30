@@ -4,7 +4,7 @@
 DOWNLOAD_LIMIT = 1000
 SLEEP_TIME = 0.05
 
-# Quality cuts (applied during download)
+# Quality cuts
 QUALITY_CUTS = {
     "rb_threshold": 0.55,
     "magerr_max": 0.3,
@@ -16,7 +16,7 @@ QUALITY_CUTS = {
     "position_tolerance": 0.01,
 }
 
-# STRICT mode cuts (for anomaly detection - only well-sampled objects)
+# STRICT mode cuts
 STRICT_CUTS = {
     "min_total_points": 20,
     "min_per_band": 8,
@@ -26,7 +26,7 @@ STRICT_CUTS = {
     "min_post_peak": 3,
 }
 
-# LOOSE mode cuts (for comparison)
+# LOOSE mode cuts ( for comparison )
 LOOSE_CUTS = {
     "min_total_points": 10,
     "min_per_band": 3,
