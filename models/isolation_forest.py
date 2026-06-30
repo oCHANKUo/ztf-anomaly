@@ -96,13 +96,12 @@ def detect(data_dir="./data", output_dir="./output"):
     print(f"\nData-quality driven: {n_dq}/{len(results)}")
     print(f"Astro-physics driven: {len(results) - n_dq}/{len(results)}")
     print(f"Saved to {out_path}")
-    # Save model and preprocessors for reuse (per-model folder)
+    # Save model and preprocessors for reuse
     models_dir = os.path.join(output_dir, "models", "isolation_forest")
     os.makedirs(models_dir, exist_ok=True)
     dump(best_model, os.path.join(models_dir, "isolation_forest_model.joblib"))
     dump(scaler, os.path.join(models_dir, "isolation_forest_scaler.joblib"))
     dump(imputer, os.path.join(models_dir, "isolation_forest_imputer.joblib"))
-    # Save feature column ordering
     with open(os.path.join(models_dir, "isolation_forest_features.json"), "w") as f:
         json.dump(numeric_cols, f)
     print(f"Saved model and preprocessors to {models_dir}")

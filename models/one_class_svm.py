@@ -87,7 +87,7 @@ def detect_ocsvm(data_dir="./data", output_dir="./output"):
         json.dump(results, f, indent=2)
     
     print(f"Saved to {out_path}")
-    # Save model and preprocessors for reuse (per-model folder)
+    # Save model and preprocessors for reuse 
     models_dir = os.path.join(output_dir, "models", "one_class_svm")
     os.makedirs(models_dir, exist_ok=True)
     dump(model, os.path.join(models_dir, "ocsvm_model.joblib"))
