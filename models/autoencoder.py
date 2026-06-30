@@ -10,6 +10,7 @@ import os
 from sklearn.preprocessing import RobustScaler
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
+from joblib import dump
 
 
 class AnomalyAE(nn.Module):
@@ -147,6 +148,17 @@ def detect_ae(data_dir="./data", output_dir="./output"):
         json.dump(results, f, indent=2)
     
     print(f"Saved to {out_path}")
+    # Save model and preprocessors for reuse (per-model folder)
+    models_dir = os.path.join(output_dir, "models", "autoencoder")
+    os.makedirs(models_dir, exist_ok=True)
+    # Save PyTorch model state
+    model_path = os.path.join(models_dir, "autoencoder_state.pth")
+    torch.save(model.state_dict(), model_path)
+    dump(scaler, os.path.join(models_dir, "autoencoder_scaler.joblib"))
+    dump(imputer, os.path.join(models_dir, "autoencoder_imputer.joblib"))
+    with open(os.path.join(models_dir, "autoencoder_features.json"), "w") as f:
+        json.dump(numeric_cols, f)
+    print(f"Saved model and preprocessors to {models_dir}")
 
 
 if __name__ == "__main__":

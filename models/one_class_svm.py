@@ -8,6 +8,7 @@ from sklearn.svm import OneClassSVM
 from sklearn.preprocessing import RobustScaler
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
+from joblib import dump
 
 top_anomalies_count = 15
 
@@ -86,6 +87,15 @@ def detect_ocsvm(data_dir="./data", output_dir="./output"):
         json.dump(results, f, indent=2)
     
     print(f"Saved to {out_path}")
+    # Save model and preprocessors for reuse (per-model folder)
+    models_dir = os.path.join(output_dir, "models", "one_class_svm")
+    os.makedirs(models_dir, exist_ok=True)
+    dump(model, os.path.join(models_dir, "ocsvm_model.joblib"))
+    dump(scaler, os.path.join(models_dir, "ocsvm_scaler.joblib"))
+    dump(imputer, os.path.join(models_dir, "ocsvm_imputer.joblib"))
+    with open(os.path.join(models_dir, "ocsvm_features.json"), "w") as f:
+        json.dump(numeric_cols, f)
+    print(f"Saved model and preprocessors to {models_dir}")
 
 
 if __name__ == "__main__":
