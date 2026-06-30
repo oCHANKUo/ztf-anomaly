@@ -27,9 +27,13 @@ def run_quality_check(data_dir="./data"):
         span = mjds[-1] - mjds[0] if len(mjds) > 1 else 0
         gaps = np.diff(mjds) if len(mjds) > 1 else []
         max_gap = np.max(gaps) if len(gaps) > 0 else 0
+        median_gap = np.median(gaps) if len(gaps) > 0 else 0
         
         mags = df[mag_col].values
         mag_range = np.max(mags) - np.min(mags) if len(mags) > 0 else 0
+        
+        # Track imputation if present
+        frac_imputed = df["imputed"].sum() / len(df) if "imputed" in df.columns else 0.0
         
         metrics.append({
             "ztf_id": ztf_id,
@@ -38,7 +42,9 @@ def run_quality_check(data_dir="./data"):
             "n_r": n_r,
             "span": span,
             "max_gap": max_gap,
+            "median_gap": median_gap,
             "mag_range": mag_range,
+            "frac_imputed": frac_imputed,
         })
     
     df_metrics = pd.DataFrame(metrics)
@@ -47,13 +53,17 @@ def run_quality_check(data_dir="./data"):
     print(f"  Mean points per object: {df_metrics['n_total'].mean():.1f}")
     print(f"  Mean span: {df_metrics['span'].mean():.1f} days")
     print(f"  Mean max gap: {df_metrics['max_gap'].mean():.1f} days")
+    print(f"  Mean median gap: {df_metrics['median_gap'].mean():.1f} days")
     print(f"  Mean mag range: {df_metrics['mag_range'].mean():.2f}")
+    print(f"  Mean frac imputed: {df_metrics['frac_imputed'].mean():.3f}")
     
     print(f"\n--- Potential Issues ---")
     print(f"  Objects with <10 points: {(df_metrics['n_total'] < 10).sum()}")
     print(f"  Objects with >100 day gap: {(df_metrics['max_gap'] > 100).sum()}")
+    print(f"  Objects with >200 day gap: {(df_metrics['max_gap'] > 200).sum()}")
     print(f"  Objects with <0.5 mag range: {(df_metrics['mag_range'] < 0.5).sum()}")
     print(f"  Single-band objects: {((df_metrics['n_g'] == 0) | (df_metrics['n_r'] == 0)).sum()}")
+    print(f"  Objects with >10% imputed: {(df_metrics['frac_imputed'] > 0.10).sum()}")
     
     report_path = os.path.join(data_dir, "quality_report.csv")
     df_metrics.to_csv(report_path, index=False)

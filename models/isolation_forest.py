@@ -1,4 +1,4 @@
-"""Isolation Forest anomaly detection."""
+"""Isolation Forest anomaly detection — ZTF DR3 style."""
 
 import pandas as pd
 import numpy as np
@@ -8,12 +8,9 @@ from joblib import dump
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.model_selection import train_test_split
-
-top_anomalies_count = 15
 
 
-def detect(data_dir="./data", output_dir="./output"):
+def detect(data_dir="./data", output_dir="./output", top_n=50):
     """Run Isolation Forest anomaly detection."""
     
     os.makedirs(output_dir, exist_ok=True)
@@ -21,90 +18,92 @@ def detect(data_dir="./data", output_dir="./output"):
     feature_file = os.path.join(data_dir, "ztf_features_strict.csv")
     df = pd.read_csv(feature_file)
     
-    feature_cols = [c for c in df.columns if c not in ["ztf_id", "label"]]
+    # === CRITICAL: Exclude DQ features from ML input ===
+    meta_cols = ["ztf_id", "label", "redshift"]
+    dq_cols = [c for c in df.columns if c.startswith("dq_")]
+    ml_cols = [c for c in df.columns if c not in meta_cols + dq_cols]
     
-    X = df[feature_cols].select_dtypes(include=[np.number])
+    print(f"Features used: {len(ml_cols)} (excluded {len(dq_cols)} DQ features)")
+    
+    X = df[ml_cols].select_dtypes(include=[np.number])
     numeric_cols = X.columns.tolist()
     
+    # Impute and scale
     imputer = SimpleImputer(strategy='median')
     X_imputed = imputer.fit_transform(X)
     
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_imputed)
     
-    X_train, X_val = train_test_split(X_scaled, test_size=0.2, random_state=42)
+    # Fit on ALL data (unsupervised — no train/val split needed for contamination tuning)
+    # ZTF paper: 1000 trees, subsample 1000
+    model = IsolationForest(
+        n_estimators=1000,
+        max_samples=min(1000, len(X_scaled)),
+        contamination='auto',  # or 0.05 for ~5% outliers
+        random_state=42,
+        n_jobs=-1
+    )
+    model.fit(X_scaled)
     
-    best_model = None
-    best_contamination = 0.05
+    # Scores: higher = more normal, lower = more anomalous
+    df["if_score"] = model.decision_function(X_scaled)
+    df["if_outlier"] = model.predict(X_scaled)  # -1 = outlier, 1 = inlier
     
-    for cont in [0.02, 0.05, 0.08, 0.10]:
-        model = IsolationForest(contamination=cont, random_state=42, n_estimators=200)
-        model.fit(X_train)
-        val_scores = model.score_samples(X_val)
-        n_anom = np.sum(val_scores < np.percentile(val_scores, cont * 100))
-        if abs(n_anom / len(val_scores) - cont) < 0.02:
-            best_contamination = cont
-            best_model = model
-            break
-    
-    if best_model is None:
-        best_model = IsolationForest(contamination=0.05, random_state=42, n_estimators=200)
-        best_model.fit(X_scaled)
-    
-    df["anomaly_label"] = best_model.predict(X_scaled)
-    df["raw_score"] = best_model.score_samples(X_scaled)
-    
+    # Feature deviations from median (for interpretation)
     medians = np.median(X_scaled, axis=0)
     
-    anomalies = df.sort_values("raw_score").head(top_anomalies_count)
+    # Save model
+    models_dir = os.path.join(output_dir, "models", "isolation_forest")
+    os.makedirs(models_dir, exist_ok=True)
+    dump(model, os.path.join(models_dir, "model.joblib"))
+    dump(scaler, os.path.join(models_dir, "scaler.joblib"))
+    dump(imputer, os.path.join(models_dir, "imputer.joblib"))
+    with open(os.path.join(models_dir, "features.json"), "w") as f:
+        json.dump(numeric_cols, f)
     
-    print(f"--- Isolation Forest (contamination={best_contamination}) ---")
-    print(f"Dataset: {len(df)} objects")
+    # Get top anomalies
+    anomalies = df.nsmallest(top_n, "if_score")
+    
+    print(f"\n--- Isolation Forest ---")
+    print(f"Dataset: {len(df)} objects | Features: {len(numeric_cols)}")
+    print(f"Outliers (auto contamination): {(df['if_outlier'] == -1).sum()}")
     
     results = []
     for idx, row in anomalies.iterrows():
-        x_scaled = scaler.transform(imputer.transform([row[numeric_cols].values]))[0]
+        x_scaled = scaler.transform(imputer.transform([X.loc[idx].values]))[0]
         deviations = np.abs(x_scaled - medians)
-        top_idx = np.argmax(deviations)
-        top_feature = numeric_cols[top_idx]
-        deviation = deviations[top_idx]
-        
         top3_idx = np.argsort(deviations)[-3:][::-1]
-        top3_features = [(numeric_cols[i], deviations[i]) for i in top3_idx]
+        top3_features = [(numeric_cols[i], float(deviations[i])) for i in top3_idx]
         
-        is_dq = top_feature.startswith("dq_")
+        is_dq = any(f.startswith("dq_") for f, _ in top3_features[:1])
         
-        print(f"ID: {row['ztf_id']} | Type: {row['label']}")
-        print(f"  Score: {row['raw_score']:.3f} | Primary: {top_feature} ({deviation:.1f}σ)")
-        print(f"  DQ-driven: {'YES' if is_dq else 'NO'}")
+        print(f"\nRank {len(results)+1}: {row['ztf_id']} | {row['label']}")
+        print(f"  IF score: {row['if_score']:.4f}")
+        print(f"  Top features: {', '.join([f'{f} ({d:.2f}σ)' for f, d in top3_features])}")
         
         results.append({
+            "rank": len(results) + 1,
             "ztf_id": row["ztf_id"],
             "label": row["label"],
-            "raw_score": float(row["raw_score"]),
-            "primary_feature": top_feature,
-            "deviation": float(deviation),
-            "is_dq_driven": bool(is_dq),
-            "top3_features": top3_features
+            "if_score": float(row["if_score"]),
+            "top3_features": top3_features,
         })
     
-    out_path = os.path.join(output_dir, "top_anomalies_if.json")
+    # Save results
+    out_path = os.path.join(output_dir, "anomalies_if.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)
     
-    n_dq = sum(1 for r in results if r["is_dq_driven"])
-    print(f"\nData-quality driven: {n_dq}/{len(results)}")
-    print(f"Astro-physics driven: {len(results) - n_dq}/{len(results)}")
-    print(f"Saved to {out_path}")
-    # Save model and preprocessors for reuse
-    models_dir = os.path.join(output_dir, "models", "isolation_forest")
-    os.makedirs(models_dir, exist_ok=True)
-    dump(best_model, os.path.join(models_dir, "isolation_forest_model.joblib"))
-    dump(scaler, os.path.join(models_dir, "isolation_forest_scaler.joblib"))
-    dump(imputer, os.path.join(models_dir, "isolation_forest_imputer.joblib"))
-    with open(os.path.join(models_dir, "isolation_forest_features.json"), "w") as f:
-        json.dump(numeric_cols, f)
-    print(f"Saved model and preprocessors to {models_dir}")
+    # Save full scores for ensemble
+    df[["ztf_id", "if_score", "if_outlier"]].to_csv(
+        os.path.join(output_dir, "scores_if.csv"), index=False
+    )
+    
+    print(f"\nSaved top {top_n} to {out_path}")
+    print(f"Saved all scores to {os.path.join(output_dir, 'scores_if.csv')}")
+    
+    return df[["ztf_id", "if_score", "if_outlier"]]
 
 
 if __name__ == "__main__":

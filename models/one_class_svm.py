@@ -1,18 +1,16 @@
-"""One-Class SVM anomaly detection."""
+"""One-Class SVM anomaly detection — ZTF DR3 style."""
 
 import pandas as pd
 import numpy as np
 import json
 import os
 from sklearn.svm import OneClassSVM
-from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.model_selection import train_test_split
 from joblib import dump
 
-top_anomalies_count = 15
 
-def detect_ocsvm(data_dir="./data", output_dir="./output"):
+def detect_ocsvm(data_dir="./data", output_dir="./output", top_n=50):
     """Run One-Class SVM anomaly detection."""
     
     os.makedirs(output_dir, exist_ok=True)
@@ -20,82 +18,81 @@ def detect_ocsvm(data_dir="./data", output_dir="./output"):
     feature_file = os.path.join(data_dir, "ztf_features_strict.csv")
     df = pd.read_csv(feature_file)
     
-    feature_cols = [c for c in df.columns if c not in ["ztf_id", "label"]]
+    # === CRITICAL: Exclude DQ features from ML input ===
+    meta_cols = ["ztf_id", "label", "redshift"]
+    dq_cols = [c for c in df.columns if c.startswith("dq_")]
+    ml_cols = [c for c in df.columns if c not in meta_cols + dq_cols]
     
-    X = df[feature_cols].select_dtypes(include=[np.number])
+    print(f"Features used: {len(ml_cols)} (excluded {len(dq_cols)} DQ features)")
+    
+    X = df[ml_cols].select_dtypes(include=[np.number])
     numeric_cols = X.columns.tolist()
     
+    # Impute and scale
     imputer = SimpleImputer(strategy='median')
     X_imputed = imputer.fit_transform(X)
     
-    scaler = RobustScaler()
+    scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_imputed)
     
-    X_train, X_val = train_test_split(X_scaled, test_size=0.2, random_state=42)
+    # OC-SVM is slow — subsample for training if large dataset
+    n_train = min(5000, len(X_scaled))
+    if len(X_scaled) > n_train:
+        print(f"Subsampling to {n_train} for OC-SVM training")
+        np.random.seed(42)
+        train_idx = np.random.choice(len(X_scaled), n_train, replace=False)
+        X_train = X_scaled[train_idx]
+    else:
+        X_train = X_scaled
     
-    best_nu = 0.05
-    best_gamma = 'scale'
-    best_score = -np.inf
+    # Fit model
+    # ZTF paper: gamma=0.01, RBF kernel
+    model = OneClassSVM(kernel='rbf', gamma=0.01, nu=0.05, verbose=True)
+    model.fit(X_train)
     
-    for nu in [0.03, 0.05, 0.08]:
-        for gamma in ['scale', 'auto', 0.01]:
-            model = OneClassSVM(kernel='rbf', nu=nu, gamma=gamma)
-            model.fit(X_train)
-            val_scores = model.decision_function(X_val)
-            median_score = np.median(val_scores)
-            if median_score > best_score:
-                best_score = median_score
-                best_nu = nu
-                best_gamma = gamma
-    
-    model = OneClassSVM(kernel='rbf', nu=best_nu, gamma=best_gamma)
-    model.fit(X_scaled)
-    
-    df["anomaly_label"] = model.predict(X_scaled)
+    # Score all data
     df["ocsvm_score"] = model.decision_function(X_scaled)
+    df["ocsvm_outlier"] = model.predict(X_scaled)
     
-    medians = np.median(X_scaled, axis=0)
+    # Save
+    models_dir = os.path.join(output_dir, "models", "one_class_svm")
+    os.makedirs(models_dir, exist_ok=True)
+    dump(model, os.path.join(models_dir, "model.joblib"))
+    dump(scaler, os.path.join(models_dir, "scaler.joblib"))
+    dump(imputer, os.path.join(models_dir, "imputer.joblib"))
+    with open(os.path.join(models_dir, "features.json"), "w") as f:
+        json.dump(numeric_cols, f)
     
-    anomalies = df.sort_values("ocsvm_score").head(top_anomalies_count)
+    # Top anomalies (most negative score = most anomalous)
+    anomalies = df.nsmallest(top_n, "ocsvm_score")
     
-    print(f"--- One-Class SVM (nu={best_nu}, gamma={best_gamma}) ---")
-    print(f"Dataset: {len(df)} objects")
+    print(f"\n--- One-Class SVM ---")
+    print(f"Dataset: {len(df)} objects | Train subsample: {len(X_train)}")
+    print(f"Outliers: {(df['ocsvm_outlier'] == -1).sum()}")
     
     results = []
     for idx, row in anomalies.iterrows():
-        x_scaled = scaler.transform(imputer.transform([row[numeric_cols].values]))[0]
-        distances = np.abs(x_scaled - medians)
-        top_idx = np.argmax(distances)
-        top_feature = numeric_cols[top_idx]
-        
-        top3_idx = np.argsort(distances)[-3:][::-1]
-        top3_features = [(numeric_cols[i], distances[i]) for i in top3_idx]
-        
-        print(f"ID: {row['ztf_id']} | Type: {row['label']}")
-        print(f"  Distance: {row['ocsvm_score']:.4f} | Extreme: {top_feature}")
+        print(f"\nRank {len(results)+1}: {row['ztf_id']} | {row['label']}")
+        print(f"  OC-SVM score: {row['ocsvm_score']:.4f}")
         
         results.append({
+            "rank": len(results) + 1,
             "ztf_id": row["ztf_id"],
             "label": row["label"],
             "ocsvm_score": float(row["ocsvm_score"]),
-            "primary_feature": top_feature,
-            "top3_features": top3_features
         })
     
-    out_path = os.path.join(output_dir, "top_anomalies_ocsvm.json")
+    out_path = os.path.join(output_dir, "anomalies_ocsvm.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)
     
-    print(f"Saved to {out_path}")
-    # Save model and preprocessors for reuse 
-    models_dir = os.path.join(output_dir, "models", "one_class_svm")
-    os.makedirs(models_dir, exist_ok=True)
-    dump(model, os.path.join(models_dir, "ocsvm_model.joblib"))
-    dump(scaler, os.path.join(models_dir, "ocsvm_scaler.joblib"))
-    dump(imputer, os.path.join(models_dir, "ocsvm_imputer.joblib"))
-    with open(os.path.join(models_dir, "ocsvm_features.json"), "w") as f:
-        json.dump(numeric_cols, f)
-    print(f"Saved model and preprocessors to {models_dir}")
+    df[["ztf_id", "ocsvm_score", "ocsvm_outlier"]].to_csv(
+        os.path.join(output_dir, "scores_ocsvm.csv"), index=False
+    )
+    
+    print(f"\nSaved top {top_n} to {out_path}")
+    
+    return df[["ztf_id", "ocsvm_score", "ocsvm_outlier"]]
 
 
 if __name__ == "__main__":
