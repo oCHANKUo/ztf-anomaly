@@ -38,23 +38,21 @@ def compute_dq_risk(df, dq_cols):
 
 def bogus_filter(df):
     """
-    ZTF DR3 inspired: high linear chi2 + low periodogram amp → bogus.
-    Returns boolean series: True = likely bogus.
+    High linear chi2 + low periodogram amplitude -> likely bogus.
+    (erratic point-to-point scatter that doesn't fit a line, combined
+    with no coherent periodic-looking structure)
     """
-    required = ['global_linear_chi2', 'g_periodogram_amp', 'r_periodogram_amp']
+    required = ["global_linear_chi2", "global_periodogram_amp"]
     if not all(r in df.columns for r in required):
         print("Warning: Missing features for bogus filter, skipping")
         return pd.Series(False, index=df.index)
-    
-    # High chi2 = erratic data that doesn't fit a line
-    chi2_thresh = df['global_linear_chi2'].quantile(0.85)
-    chi2_high = df['global_linear_chi2'] > chi2_thresh
-    
-    # Low periodogram amplitude = no coherent structure
-    g_amp_thresh = df['g_periodogram_amp'].quantile(0.25)
-    r_amp_thresh = df['r_periodogram_amp'].quantile(0.25)
-    amp_low = (df['g_periodogram_amp'] < g_amp_thresh) & (df['r_periodogram_amp'] < r_amp_thresh)
-    
+
+    chi2_thresh = df["global_linear_chi2"].quantile(0.85)
+    chi2_high = df["global_linear_chi2"] > chi2_thresh
+
+    amp_thresh = df["global_periodogram_amp"].quantile(0.25)
+    amp_low = df["global_periodogram_amp"] < amp_thresh
+
     return chi2_high & amp_low
 
 
