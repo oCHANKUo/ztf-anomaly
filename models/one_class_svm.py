@@ -9,7 +9,7 @@ import numpy as np
 import json
 import os
 from sklearn.svm import OneClassSVM
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import RobustScaler
 from sklearn.impute import SimpleImputer
 from joblib import dump
 
@@ -25,6 +25,9 @@ def detect_ocsvm(data_dir="./data", output_dir="./output", top_n=50):
     dq_cols = [c for c in df.columns if c.startswith("dq_")]
     ml_cols = [c for c in df.columns if c not in meta_cols + dq_cols]
 
+    volume_metrics = ["g_nobs", "r_nobs", "global_amplitude", "g_amplitude", "r_amplitude"]
+    ml_cols = [c for c in ml_cols if c not in volume_metrics]
+
     print(f"Features used: {len(ml_cols)} (excluded {len(dq_cols)} DQ features)")
 
     X = df[ml_cols].select_dtypes(include=[np.number])
@@ -33,7 +36,7 @@ def detect_ocsvm(data_dir="./data", output_dir="./output", top_n=50):
     imputer = SimpleImputer(strategy="median")
     X_imputed = imputer.fit_transform(X)
 
-    scaler = StandardScaler()
+    scaler = RobustScaler()
     X_scaled = scaler.fit_transform(X_imputed)
 
     n_train = min(5000, len(X_scaled))

@@ -105,7 +105,9 @@ def band_features(mags, mjds, magerrs, prefix, res):
         slope, intercept, r_value, p_value, std_err = stats.linregress(mjds, mags)
         predicted = slope * mjds + intercept
         res[prefix + "linear_trend"] = slope
-        res[prefix + "linear_chi2"] = np.sum(((mags - predicted) / magerrs) ** 2) / max(len(mags) - 2, 1)
+        # res[prefix + "linear_chi2"] = np.sum(((mags - predicted) / magerrs) ** 2) / max(len(mags) - 2, 1)
+        adjusted_errors = np.sqrt(magerrs**2 + 0.02**2)
+        res[prefix + "linear_chi2"] = np.sum(((mags - predicted) / adjusted_errors) ** 2) / max(len(mags) - 2, 1)
     else:
         res[prefix + "linear_trend"] = np.nan
         res[prefix + "linear_chi2"] = np.nan
@@ -113,12 +115,12 @@ def band_features(mags, mjds, magerrs, prefix, res):
     if len(mags) > 1:
         dt = np.maximum(np.diff(mjds), 0.1)
         dm = np.diff(mags)
-        res[prefix + "max_slope"] = np.max(np.abs(dm / dt))
+        res[prefix + "max_slope"] = np.percentile(np.abs(dm / dt), 95)
     else:
         res[prefix + "max_slope"] = np.nan
 
 
-def extract_features(ztf_id, df, label, redshift, strict_mode=False):
+def extract_features(ztf_id, df, label, redshift, strict_mode=True):
     """Extract the simplified feature set from a single light curve."""
 
     if df is None or df.empty:
@@ -202,7 +204,9 @@ def extract_features(ztf_id, df, label, redshift, strict_mode=False):
         slope, intercept, r_value, p_value, std_err = stats.linregress(all_mjds, all_mags)
         predicted = slope * all_mjds + intercept
         res["global_linear_trend"] = slope
-        res["global_linear_chi2"] = np.sum(((all_mags - predicted) / all_magerrs) ** 2) / max(len(all_mags) - 2, 1)
+        # res["global_linear_chi2"] = np.sum(((all_mags - predicted) / all_magerrs) ** 2) / max(len(all_mags) - 2, 1)
+        adjusted_errors = np.sqrt(all_magerrs**2 + 0.02**2)
+        res["global_linear_chi2"] = np.sum(((all_mags - predicted) / adjusted_errors) ** 2) / max(len(all_mags) - 2, 1)
     else:
         res["global_linear_trend"] = np.nan
         res["global_linear_chi2"] = np.nan
@@ -210,7 +214,8 @@ def extract_features(ztf_id, df, label, redshift, strict_mode=False):
     if len(all_mags) > 1:
         dt = np.maximum(np.diff(all_mjds), 0.1)
         dm = np.diff(all_mags)
-        res["global_max_slope"] = np.max(np.abs(dm / dt))
+        # res["global_max_slope"] = np.max(np.abs(dm / dt))
+        res["global_max_slope"] = np.percentile(np.abs(dm / dt), 95)
     else:
         res["global_max_slope"] = np.nan
 
