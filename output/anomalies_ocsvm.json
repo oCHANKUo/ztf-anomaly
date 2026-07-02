@@ -1,0 +1,302 @@
+[
+  {
+    "rank": 1,
+    "ztf_id": "ZTF18acbwaxk",
+    "label": "SN II",
+    "ocsvm_score": -39.47651619277659
+  },
+  {
+    "rank": 2,
+    "ztf_id": "ZTF19aajxwnz",
+    "label": "SN Ia",
+    "ocsvm_score": -37.65000778425901
+  },
+  {
+    "rank": 3,
+    "ztf_id": "ZTF22aafoqrd",
+    "label": "SN Ia",
+    "ocsvm_score": -35.99558938657853
+  },
+  {
+    "rank": 4,
+    "ztf_id": "ZTF21aaqftpz",
+    "label": "SN Ia",
+    "ocsvm_score": -31.00942202344566
+  },
+  {
+    "rank": 5,
+    "ztf_id": "ZTF20aavpnlv",
+    "label": "SN Ia",
+    "ocsvm_score": -29.912709015783342
+  },
+  {
+    "rank": 6,
+    "ztf_id": "ZTF21abisowq",
+    "label": "SN Ia",
+    "ocsvm_score": -25.44329995026613
+  },
+  {
+    "rank": 7,
+    "ztf_id": "ZTF22aadksbz",
+    "label": "SN II",
+    "ocsvm_score": -24.773741974680192
+  },
+  {
+    "rank": 8,
+    "ztf_id": "ZTF20acklcyp",
+    "label": "SN IIn",
+    "ocsvm_score": -24.1205800195972
+  },
+  {
+    "rank": 9,
+    "ztf_id": "ZTF19abqanpy",
+    "label": "SN Ia",
+    "ocsvm_score": -23.66073298380325
+  },
+  {
+    "rank": 10,
+    "ztf_id": "ZTF22abtjefa",
+    "label": "SN II",
+    "ocsvm_score": -22.78079359700532
+  },
+  {
+    "rank": 11,
+    "ztf_id": "ZTF22aazdzyj",
+    "label": "nova",
+    "ocsvm_score": -22.12451189377651
+  },
+  {
+    "rank": 12,
+    "ztf_id": "ZTF18acjpret",
+    "label": "SN IIn",
+    "ocsvm_score": -21.35526924899678
+  },
+  {
+    "rank": 13,
+    "ztf_id": "ZTF22abnvurz",
+    "label": "SN Ic-BL",
+    "ocsvm_score": -21.028381973850347
+  },
+  {
+    "rank": 14,
+    "ztf_id": "ZTF19abqrrto",
+    "label": "SN Ia-91T",
+    "ocsvm_score": -20.74489546933475
+  },
+  {
+    "rank": 15,
+    "ztf_id": "ZTF20abxpoxd",
+    "label": "SN Ic",
+    "ocsvm_score": -20.59774550508457
+  },
+  {
+    "rank": 16,
+    "ztf_id": "ZTF22aanwibf",
+    "label": "SN IIn",
+    "ocsvm_score": -20.03634070658774
+  },
+  {
+    "rank": 17,
+    "ztf_id": "ZTF20acphdcg",
+    "label": "SLSN-I",
+    "ocsvm_score": -19.93024698373341
+  },
+  {
+    "rank": 18,
+    "ztf_id": "ZTF20aaynrrh",
+    "label": "SN II",
+    "ocsvm_score": -19.543099689589006
+  },
+  {
+    "rank": 19,
+    "ztf_id": "ZTF20acuosvy",
+    "label": "SN Ia",
+    "ocsvm_score": -18.37531002076656
+  },
+  {
+    "rank": 20,
+    "ztf_id": "ZTF19aariwfe",
+    "label": "SN II",
+    "ocsvm_score": -16.926793643061547
+  },
+  {
+    "rank": 21,
+    "ztf_id": "ZTF22aavobvq",
+    "label": "SN II",
+    "ocsvm_score": -16.68776117758014
+  },
+  {
+    "rank": 22,
+    "ztf_id": "ZTF19acnzkph",
+    "label": "SN Ia",
+    "ocsvm_score": -16.207649923188903
+  },
+  {
+    "rank": 23,
+    "ztf_id": "ZTF23aamqtel",
+    "label": "SN Ia",
+    "ocsvm_score": -15.701040442109235
+  },
+  {
+    "rank": 24,
+    "ztf_id": "ZTF22aamtomc",
+    "label": "SN Ia",
+    "ocsvm_score": -15.370422124946504
+  },
+  {
+    "rank": 25,
+    "ztf_id": "ZTF23aalftvv",
+    "label": "SN II",
+    "ocsvm_score": -15.316556195493543
+  },
+  {
+    "rank": 26,
+    "ztf_id": "ZTF20aatzhhl",
+    "label": "SN IIb",
+    "ocsvm_score": -15.170186690369299
+  },
+  {
+    "rank": 27,
+    "ztf_id": "ZTF23aabqqsl",
+    "label": "SN Ia",
+    "ocsvm_score": -15.087521572603965
+  },
+  {
+    "rank": 28,
+    "ztf_id": "ZTF19abwztsb",
+    "label": "SN II",
+    "ocsvm_score": -14.99951564602993
+  },
+  {
+    "rank": 29,
+    "ztf_id": "ZTF20achlced",
+    "label": "SN Ia",
+    "ocsvm_score": -14.62191062103712
+  },
+  {
+    "rank": 30,
+    "ztf_id": "ZTF18abcpmwh",
+    "label": "SN IIP",
+    "ocsvm_score": -14.432325030620131
+  },
+  {
+    "rank": 31,
+    "ztf_id": "ZTF21aarqkes",
+    "label": "SN Ia",
+    "ocsvm_score": -14.386264553318643
+  },
+  {
+    "rank": 32,
+    "ztf_id": "ZTF21aapdumx",
+    "label": "SN Ibn",
+    "ocsvm_score": -14.357062876063672
+  },
+  {
+    "rank": 33,
+    "ztf_id": "ZTF22aadnqsf",
+    "label": "SN II",
+    "ocsvm_score": -14.34534994051657
+  },
+  {
+    "rank": 34,
+    "ztf_id": "ZTF21aaqytjr",
+    "label": "SN Ia",
+    "ocsvm_score": -13.942638348429249
+  },
+  {
+    "rank": 35,
+    "ztf_id": "ZTF18adbmbpa",
+    "label": "SN II",
+    "ocsvm_score": -13.727563788718978
+  },
+  {
+    "rank": 36,
+    "ztf_id": "ZTF20abnrdse",
+    "label": "SN Ia",
+    "ocsvm_score": -13.52748749042798
+  },
+  {
+    "rank": 37,
+    "ztf_id": "ZTF20acfvgdp",
+    "label": "SN II",
+    "ocsvm_score": -13.340616216163951
+  },
+  {
+    "rank": 38,
+    "ztf_id": "ZTF21abuvury",
+    "label": "SN Ibn",
+    "ocsvm_score": -13.098114214060281
+  },
+  {
+    "rank": 39,
+    "ztf_id": "ZTF21abptxfk",
+    "label": "SN II",
+    "ocsvm_score": -11.978010392382522
+  },
+  {
+    "rank": 40,
+    "ztf_id": "ZTF19aamhqej",
+    "label": "SN Ia",
+    "ocsvm_score": -11.976158959633523
+  },
+  {
+    "rank": 41,
+    "ztf_id": "ZTF22aaokiud",
+    "label": "SN Ia",
+    "ocsvm_score": -11.514262796248914
+  },
+  {
+    "rank": 42,
+    "ztf_id": "ZTF21abulsgn",
+    "label": "SN Ia",
+    "ocsvm_score": -11.485634092104945
+  },
+  {
+    "rank": 43,
+    "ztf_id": "ZTF18aasprui",
+    "label": "SN Ia",
+    "ocsvm_score": -11.480237419048319
+  },
+  {
+    "rank": 44,
+    "ztf_id": "ZTF21abidikc",
+    "label": "SN Ia",
+    "ocsvm_score": -11.400387948514528
+  },
+  {
+    "rank": 45,
+    "ztf_id": "ZTF21abjbrrj",
+    "label": "SN Ia",
+    "ocsvm_score": -11.166176746853367
+  },
+  {
+    "rank": 46,
+    "ztf_id": "ZTF21aazieut",
+    "label": "SN Ia",
+    "ocsvm_score": -11.134469541776987
+  },
+  {
+    "rank": 47,
+    "ztf_id": "ZTF20acyvzef",
+    "label": "SN Ia",
+    "ocsvm_score": -10.667962808277988
+  },
+  {
+    "rank": 48,
+    "ztf_id": "ZTF22aamgumi",
+    "label": "SN II",
+    "ocsvm_score": -10.473631343979928
+  },
+  {
+    "rank": 49,
+    "ztf_id": "ZTF21aagppzg",
+    "label": "LBV",
+    "ocsvm_score": -10.209341245284186
+  },
+  {
+    "rank": 50,
+    "ztf_id": "ZTF20acgigfo",
+    "label": "nova",
+    "ocsvm_score": -9.880057784089185
+  }
+]

@@ -1,0 +1,1002 @@
+[
+  {
+    "rank": 1,
+    "ztf_id": "ZTF18acbwaxk",
+    "label": "SN II",
+    "if_score": -0.20212940730355722,
+    "top3_features": [
+      [
+        "g_nobs",
+        20.924936423948193
+      ],
+      [
+        "r_nobs",
+        18.98695828277517
+      ],
+      [
+        "g_max_slope",
+        7.377652924484992
+      ]
+    ]
+  },
+  {
+    "rank": 2,
+    "ztf_id": "ZTF22aafoqrd",
+    "label": "SN Ia",
+    "if_score": -0.180686355475693,
+    "top3_features": [
+      [
+        "r_std",
+        8.297192454250757
+      ],
+      [
+        "global_std",
+        7.87634078844823
+      ],
+      [
+        "g_mad",
+        7.6609092082235835
+      ]
+    ]
+  },
+  {
+    "rank": 3,
+    "ztf_id": "ZTF20aavpnlv",
+    "label": "SN Ia",
+    "if_score": -0.16124508613307786,
+    "top3_features": [
+      [
+        "r_std",
+        9.105386190375604
+      ],
+      [
+        "r_amplitude",
+        7.2961900513024975
+      ],
+      [
+        "global_std",
+        7.1797488118090085
+      ]
+    ]
+  },
+  {
+    "rank": 4,
+    "ztf_id": "ZTF19aajxwnz",
+    "label": "SN Ia",
+    "if_score": -0.1366376021274951,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        17.929068176095544
+      ],
+      [
+        "global_mad",
+        6.160984007686955
+      ],
+      [
+        "r_std",
+        4.886140421841352
+      ]
+    ]
+  },
+  {
+    "rank": 5,
+    "ztf_id": "ZTF22abtjefa",
+    "label": "SN II",
+    "if_score": -0.1208623328152455,
+    "top3_features": [
+      [
+        "r_mad",
+        7.288412209526898
+      ],
+      [
+        "g_mad",
+        6.574545725995839
+      ],
+      [
+        "global_mad",
+        6.122870369755441
+      ]
+    ]
+  },
+  {
+    "rank": 6,
+    "ztf_id": "ZTF20aaynrrh",
+    "label": "SN II",
+    "if_score": -0.10711732707848665,
+    "top3_features": [
+      [
+        "global_std",
+        6.5319901589561224
+      ],
+      [
+        "r_std",
+        6.466409922470918
+      ],
+      [
+        "g_std",
+        5.9280903363319934
+      ]
+    ]
+  },
+  {
+    "rank": 7,
+    "ztf_id": "ZTF20acuosvy",
+    "label": "SN Ia",
+    "if_score": -0.09400209401523896,
+    "top3_features": [
+      [
+        "global_linear_chi2",
+        5.495873766359156
+      ],
+      [
+        "r_mad",
+        5.37903288043127
+      ],
+      [
+        "g_linear_chi2",
+        4.843233837558913
+      ]
+    ]
+  },
+  {
+    "rank": 8,
+    "ztf_id": "ZTF20aatzhhl",
+    "label": "SN IIb",
+    "if_score": -0.09028453212702847,
+    "top3_features": [
+      [
+        "r_std",
+        6.1466231918469605
+      ],
+      [
+        "global_mad",
+        4.820126097779695
+      ],
+      [
+        "r_amplitude",
+        4.106835800576019
+      ]
+    ]
+  },
+  {
+    "rank": 9,
+    "ztf_id": "ZTF20achlced",
+    "label": "SN Ia",
+    "if_score": -0.08973378466906612,
+    "top3_features": [
+      [
+        "global_amplitude",
+        6.13610349015834
+      ],
+      [
+        "g_amplitude",
+        6.013931222838142
+      ],
+      [
+        "global_std",
+        5.886482091528794
+      ]
+    ]
+  },
+  {
+    "rank": 10,
+    "ztf_id": "ZTF22aanwibf",
+    "label": "SN IIn",
+    "if_score": -0.08390567513593716,
+    "top3_features": [
+      [
+        "r_nobs",
+        8.291772920958778
+      ],
+      [
+        "g_nobs",
+        7.971404351980263
+      ],
+      [
+        "r_max_slope",
+        5.1685192547582055
+      ]
+    ]
+  },
+  {
+    "rank": 11,
+    "ztf_id": "ZTF22abnvurz",
+    "label": "SN Ic-BL",
+    "if_score": -0.08246982439365624,
+    "top3_features": [
+      [
+        "color_gr",
+        7.681493992135605
+      ],
+      [
+        "global_std",
+        4.894818175328276
+      ],
+      [
+        "peak_color",
+        4.752181684257678
+      ]
+    ]
+  },
+  {
+    "rank": 12,
+    "ztf_id": "ZTF20abxpoxd",
+    "label": "SN Ic",
+    "if_score": -0.07889460797283798,
+    "top3_features": [
+      [
+        "r_nobs",
+        8.411943543001659
+      ],
+      [
+        "g_nobs",
+        8.124700589518344
+      ],
+      [
+        "g_max_slope",
+        4.853670550441493
+      ]
+    ]
+  },
+  {
+    "rank": 13,
+    "ztf_id": "ZTF22aavobvq",
+    "label": "SN II",
+    "if_score": -0.07401438815823147,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        6.594830651339218
+      ],
+      [
+        "r_linear_trend",
+        4.9034083703321
+      ],
+      [
+        "global_skew",
+        4.134528473965543
+      ]
+    ]
+  },
+  {
+    "rank": 14,
+    "ztf_id": "ZTF21aaqftpz",
+    "label": "SN Ia",
+    "if_score": -0.07263175106981523,
+    "top3_features": [
+      [
+        "peak_color",
+        11.258901326195025
+      ],
+      [
+        "color_gr",
+        6.465012869440015
+      ],
+      [
+        "global_mad",
+        5.543478346069063
+      ]
+    ]
+  },
+  {
+    "rank": 15,
+    "ztf_id": "ZTF22aamtomc",
+    "label": "SN Ia",
+    "if_score": -0.0716835253278224,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        6.356716953696584
+      ],
+      [
+        "global_linear_chi2",
+        6.0383186876911035
+      ],
+      [
+        "r_linear_trend",
+        3.532005023446344
+      ]
+    ]
+  },
+  {
+    "rank": 16,
+    "ztf_id": "ZTF21aazieut",
+    "label": "SN Ia",
+    "if_score": -0.06772993602131361,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        5.580329723149144
+      ],
+      [
+        "global_linear_chi2",
+        3.767137253471002
+      ],
+      [
+        "r_linear_trend",
+        3.664487945068664
+      ]
+    ]
+  },
+  {
+    "rank": 17,
+    "ztf_id": "ZTF21aaqytjr",
+    "label": "SN Ia",
+    "if_score": -0.06770237384247024,
+    "top3_features": [
+      [
+        "r_std",
+        7.265201144905758
+      ],
+      [
+        "r_amplitude",
+        6.3402597228260404
+      ],
+      [
+        "global_amplitude",
+        5.7301235027034
+      ]
+    ]
+  },
+  {
+    "rank": 18,
+    "ztf_id": "ZTF22aadksbz",
+    "label": "SN II",
+    "if_score": -0.06536475051055879,
+    "top3_features": [
+      [
+        "color_gr",
+        8.197476218855446
+      ],
+      [
+        "r_std",
+        5.493061915118178
+      ],
+      [
+        "global_std",
+        5.1774964580616105
+      ]
+    ]
+  },
+  {
+    "rank": 19,
+    "ztf_id": "ZTF19abqanpy",
+    "label": "SN Ia",
+    "if_score": -0.059595008940996896,
+    "top3_features": [
+      [
+        "r_nobs",
+        9.613649763430466
+      ],
+      [
+        "global_skew",
+        5.398525938797174
+      ],
+      [
+        "r_skew",
+        4.889108686642912
+      ]
+    ]
+  },
+  {
+    "rank": 20,
+    "ztf_id": "ZTF18acjpret",
+    "label": "SN IIn",
+    "if_score": -0.05776256077816322,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        9.459400464227194
+      ],
+      [
+        "global_linear_chi2",
+        7.52004889023439
+      ],
+      [
+        "r_mad",
+        4.633689743192729
+      ]
+    ]
+  },
+  {
+    "rank": 21,
+    "ztf_id": "ZTF21aarqkes",
+    "label": "SN Ia",
+    "if_score": -0.057387734137451574,
+    "top3_features": [
+      [
+        "g_mad",
+        6.777025298568789
+      ],
+      [
+        "global_std",
+        5.118352857598008
+      ],
+      [
+        "g_std",
+        4.918496264723508
+      ]
+    ]
+  },
+  {
+    "rank": 22,
+    "ztf_id": "ZTF19abqrrto",
+    "label": "SN Ia-91T",
+    "if_score": -0.056258296324380175,
+    "top3_features": [
+      [
+        "r_nobs",
+        8.952711342194622
+      ],
+      [
+        "global_skew",
+        4.928945721248038
+      ],
+      [
+        "r_skew",
+        4.66510393962093
+      ]
+    ]
+  },
+  {
+    "rank": 23,
+    "ztf_id": "ZTF20acphdcg",
+    "label": "SLSN-I",
+    "if_score": -0.05152702303539136,
+    "top3_features": [
+      [
+        "r_nobs",
+        8.4720288540231
+      ],
+      [
+        "g_nobs",
+        8.43129306459451
+      ],
+      [
+        "g_max_slope",
+        4.455392912131351
+      ]
+    ]
+  },
+  {
+    "rank": 24,
+    "ztf_id": "ZTF22aamgumi",
+    "label": "SN II",
+    "if_score": -0.051272775177342744,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        6.258589222516521
+      ],
+      [
+        "r_mad",
+        4.077462156486463
+      ],
+      [
+        "r_std",
+        3.8402018847026733
+      ]
+    ]
+  },
+  {
+    "rank": 25,
+    "ztf_id": "ZTF19abwztsb",
+    "label": "SN II",
+    "if_score": -0.046903251519823774,
+    "top3_features": [
+      [
+        "color_gr",
+        4.859182006055313
+      ],
+      [
+        "g_stetson_k",
+        4.457534492821641
+      ],
+      [
+        "global_mad",
+        4.095208871685296
+      ]
+    ]
+  },
+  {
+    "rank": 26,
+    "ztf_id": "ZTF19aacgslb",
+    "label": "SN Ia",
+    "if_score": -0.04607075119771875,
+    "top3_features": [
+      [
+        "global_amplitude",
+        6.398780121819528
+      ],
+      [
+        "g_amplitude",
+        5.790985530224852
+      ],
+      [
+        "r_amplitude",
+        4.073676159145684
+      ]
+    ]
+  },
+  {
+    "rank": 27,
+    "ztf_id": "ZTF22abtknum",
+    "label": "SN Ia",
+    "if_score": -0.04544079114366151,
+    "top3_features": [
+      [
+        "color_gr",
+        5.100572137357241
+      ],
+      [
+        "global_amplitude",
+        4.38415489211134
+      ],
+      [
+        "global_std",
+        4.322436834133179
+      ]
+    ]
+  },
+  {
+    "rank": 28,
+    "ztf_id": "ZTF20acklcyp",
+    "label": "SN IIn",
+    "if_score": -0.042368527423568,
+    "top3_features": [
+      [
+        "r_nobs",
+        12.257403448373845
+      ],
+      [
+        "g_nobs",
+        6.821682570444649
+      ],
+      [
+        "g_max_slope",
+        4.258813819396364
+      ]
+    ]
+  },
+  {
+    "rank": 29,
+    "ztf_id": "ZTF18acqqyah",
+    "label": "SN Ia",
+    "if_score": -0.04173685698858476,
+    "top3_features": [
+      [
+        "r_mad",
+        4.678367655977636
+      ],
+      [
+        "global_amplitude",
+        4.2633036228351004
+      ],
+      [
+        "r_amplitude",
+        4.079401267475225
+      ]
+    ]
+  },
+  {
+    "rank": 30,
+    "ztf_id": "ZTF19acnzkph",
+    "label": "SN Ia",
+    "if_score": -0.0399741341691604,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        7.989892665970936
+      ],
+      [
+        "global_linear_chi2",
+        6.521894003709726
+      ],
+      [
+        "r_mad",
+        4.314646207705802
+      ]
+    ]
+  },
+  {
+    "rank": 31,
+    "ztf_id": "ZTF18abvmlow",
+    "label": "SN II",
+    "if_score": -0.039203681124654444,
+    "top3_features": [
+      [
+        "g_std",
+        5.017131787309805
+      ],
+      [
+        "global_std",
+        3.9510872255385294
+      ],
+      [
+        "r_skew",
+        3.784658712415026
+      ]
+    ]
+  },
+  {
+    "rank": 32,
+    "ztf_id": "ZTF21aagppzg",
+    "label": "LBV",
+    "if_score": -0.03890797557421666,
+    "top3_features": [
+      [
+        "r_nobs",
+        5.82827516907972
+      ],
+      [
+        "abs_mag_g",
+        5.644520599056945
+      ],
+      [
+        "g_nobs",
+        5.288720195063829
+      ]
+    ]
+  },
+  {
+    "rank": 33,
+    "ztf_id": "ZTF20ablygyy",
+    "label": "SN II",
+    "if_score": -0.03872280440042741,
+    "top3_features": [
+      [
+        "r_std",
+        5.100462159445269
+      ],
+      [
+        "global_std",
+        4.077214846609856
+      ],
+      [
+        "r_amplitude",
+        3.4645708781171476
+      ]
+    ]
+  },
+  {
+    "rank": 34,
+    "ztf_id": "ZTF21abpxquj",
+    "label": "SN IIn",
+    "if_score": -0.037614852623436446,
+    "top3_features": [
+      [
+        "global_mad",
+        4.560818585552832
+      ],
+      [
+        "r_mad",
+        4.533887811741859
+      ],
+      [
+        "g_mad",
+        4.0577666490223585
+      ]
+    ]
+  },
+  {
+    "rank": 35,
+    "ztf_id": "ZTF19abbnamr",
+    "label": "SN II",
+    "if_score": -0.036651358452777894,
+    "top3_features": [
+      [
+        "g_nobs",
+        5.288720195063829
+      ],
+      [
+        "r_nobs",
+        5.227422058865316
+      ],
+      [
+        "r_max_slope",
+        4.910316284898857
+      ]
+    ]
+  },
+  {
+    "rank": 36,
+    "ztf_id": "ZTF20acoyfpk",
+    "label": "SN Ia",
+    "if_score": -0.03606042577092039,
+    "top3_features": [
+      [
+        "r_std",
+        4.677917586908106
+      ],
+      [
+        "r_amplitude",
+        4.0257090003910125
+      ],
+      [
+        "global_std",
+        3.847773412689811
+      ]
+    ]
+  },
+  {
+    "rank": 37,
+    "ztf_id": "ZTF19aatlmbo",
+    "label": "SN Ia",
+    "if_score": -0.03572112527998972,
+    "top3_features": [
+      [
+        "r_amplitude",
+        5.54818995202147
+      ],
+      [
+        "global_amplitude",
+        4.857095067254986
+      ],
+      [
+        "global_std",
+        4.318343972304995
+      ]
+    ]
+  },
+  {
+    "rank": 38,
+    "ztf_id": "ZTF23aalftvv",
+    "label": "SN II",
+    "if_score": -0.035605692232113406,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        8.424442122703027
+      ],
+      [
+        "global_linear_chi2",
+        6.926109175520783
+      ],
+      [
+        "r_mad",
+        3.256379475799514
+      ]
+    ]
+  },
+  {
+    "rank": 39,
+    "ztf_id": "ZTF20abobpcb",
+    "label": "SLSN-I",
+    "if_score": -0.03437810441370803,
+    "top3_features": [
+      [
+        "g_nobs",
+        4.675535244911501
+      ],
+      [
+        "r_mad",
+        3.9878554367910857
+      ],
+      [
+        "r_nobs",
+        3.4248627282221036
+      ]
+    ]
+  },
+  {
+    "rank": 40,
+    "ztf_id": "ZTF22abkpgpa",
+    "label": "SN Ia",
+    "if_score": -0.03367753517556438,
+    "top3_features": [
+      [
+        "r_mad",
+        4.647941467445197
+      ],
+      [
+        "global_mad",
+        4.3654446283580155
+      ],
+      [
+        "r_std",
+        4.3422998095538095
+      ]
+    ]
+  },
+  {
+    "rank": 41,
+    "ztf_id": "ZTF18adbmbpa",
+    "label": "SN II",
+    "if_score": -0.03330027914956524,
+    "top3_features": [
+      [
+        "r_skew",
+        4.820956411519689
+      ],
+      [
+        "g_mad",
+        4.331932163577604
+      ],
+      [
+        "r_stetson_k",
+        4.25338385710811
+      ]
+    ]
+  },
+  {
+    "rank": 42,
+    "ztf_id": "ZTF21aagqcnl",
+    "label": "SN Ia",
+    "if_score": -0.03307707685138528,
+    "top3_features": [
+      [
+        "g_nobs",
+        5.135423957525747
+      ],
+      [
+        "r_mad",
+        4.405010299387608
+      ],
+      [
+        "r_amplitude",
+        3.860900286240356
+      ]
+    ]
+  },
+  {
+    "rank": 43,
+    "ztf_id": "ZTF18aaqkcso",
+    "label": "SN Ia",
+    "if_score": -0.03283739419420639,
+    "top3_features": [
+      [
+        "global_amplitude",
+        4.74822339010303
+      ],
+      [
+        "global_std",
+        4.720265068289632
+      ],
+      [
+        "g_amplitude",
+        4.705707945889763
+      ]
+    ]
+  },
+  {
+    "rank": 44,
+    "ztf_id": "ZTF20aapchqy",
+    "label": "SN II",
+    "if_score": -0.03194417952305495,
+    "top3_features": [
+      [
+        "abs_mag_g",
+        5.197646944770827
+      ],
+      [
+        "r_skew",
+        4.221177917975503
+      ],
+      [
+        "g_nobs",
+        4.138998413528213
+      ]
+    ]
+  },
+  {
+    "rank": 45,
+    "ztf_id": "ZTF19aclobbu",
+    "label": "SN II",
+    "if_score": -0.030333241499222785,
+    "top3_features": [
+      [
+        "r_stetson_k",
+        4.556428114298213
+      ],
+      [
+        "g_nobs",
+        4.445590888604378
+      ],
+      [
+        "r_skew",
+        4.369489952869442
+      ]
+    ]
+  },
+  {
+    "rank": 46,
+    "ztf_id": "ZTF21abbvkpr",
+    "label": "SN Ia",
+    "if_score": -0.0300151293425841,
+    "top3_features": [
+      [
+        "r_linear_chi2",
+        3.3862689228802525
+      ],
+      [
+        "g_amplitude",
+        3.263749219820705
+      ],
+      [
+        "global_amplitude",
+        3.2184647806395166
+      ]
+    ]
+  },
+  {
+    "rank": 47,
+    "ztf_id": "ZTF21acizrpw",
+    "label": "SN Ia",
+    "if_score": -0.029443993009337976,
+    "top3_features": [
+      [
+        "r_linear_trend",
+        5.649342768964312
+      ],
+      [
+        "global_skew",
+        4.513258654968169
+      ],
+      [
+        "global_linear_trend",
+        4.336645852626047
+      ]
+    ]
+  },
+  {
+    "rank": 48,
+    "ztf_id": "ZTF23aaaigqy",
+    "label": "SN II",
+    "if_score": -0.028924608144706654,
+    "top3_features": [
+      [
+        "color_gr",
+        4.0018796903748175
+      ],
+      [
+        "g_std",
+        3.2986773524809427
+      ],
+      [
+        "global_amplitude",
+        2.8406868814568917
+      ]
+    ]
+  },
+  {
+    "rank": 49,
+    "ztf_id": "ZTF22aaokiud",
+    "label": "SN Ia",
+    "if_score": -0.028291470500028226,
+    "top3_features": [
+      [
+        "color_gr",
+        6.782324931109378
+      ],
+      [
+        "global_std",
+        4.018048711539285
+      ],
+      [
+        "g_skew",
+        3.5665934984887007
+      ]
+    ]
+  },
+  {
+    "rank": 50,
+    "ztf_id": "ZTF21aaublej",
+    "label": "SN Ia",
+    "if_score": -0.027883100816519124,
+    "top3_features": [
+      [
+        "g_max_slope",
+        5.544559794018467
+      ],
+      [
+        "g_nobs",
+        4.982127719987664
+      ],
+      [
+        "r_nobs",
+        4.686654259672352
+      ]
+    ]
+  }
+]
